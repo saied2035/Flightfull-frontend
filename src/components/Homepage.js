@@ -1,7 +1,18 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Slider from 'react-slick';
 import Proptypes from 'prop-types';
 import { get } from '../redux/flights/flights';
+
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+};
 
 export function Flight(props) {
   const {
@@ -33,16 +44,19 @@ function Flights() {
   }, []);
   return (
     <>
-      <h1>Items list</h1>
-      {flights.map((Item) => (
-        <Flight
-          key={Item.id}
-          id={Item.id.toString()}
-          name={Item.name}
-          image={Item.image}
-          flightNumber={Item.flightNumber}
-        />
-      ))}
+      <Slider {...settings}>
+        {
+        flights.map((Item) => (
+          <Link to={`Item_detail/${Item.id}`} key={Item.id}>
+            <Flight
+              name={Item.name}
+              image={Item.image}
+              flightNumber={Item.flightNumber}
+            />
+          </Link>
+        ))
+      }
+      </Slider>
     </>
   );
 }
