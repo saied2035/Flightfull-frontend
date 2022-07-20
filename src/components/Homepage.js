@@ -1,28 +1,23 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Proptypes from 'prop-types';
-import { get, post } from '../redux/flights/flights';
+import { get } from '../redux/flights/flights';
 
 export function Flight(props) {
   const {
-    id, name, flightNumber, image,
+    name, flightNumber, image,
   } = props;
-
-  const flights = useSelector((state) => state.flightsReducer);
-  const dispatch = useDispatch();
 
   return (
     <div className="itemsContainer">
       <img className="itemImage" src={image} alt="itemImage" />
       <h2>{name}</h2>
       <h3>{flightNumber}</h3>
-      <button type="button" id={id} onClick={() => dispatch(post(flights, id))}>Reserve</button>
     </div>
   );
 }
 
 Flight.propTypes = {
-  id: Proptypes.number.isRequired,
   name: Proptypes.string.isRequired,
   image: Proptypes.string.isRequired,
   flightNumber: Proptypes.number.isRequired,

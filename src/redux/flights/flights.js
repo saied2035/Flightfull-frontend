@@ -6,9 +6,14 @@ const GET = 'get';
 const POST = 'post';
 const DELETE = 'delete';
 
-export const get = async () => {
-  const res = await axios.get(itemsURL);
-  return res;
+export const get = () => async (dispatch) => {
+  await axios.get(itemsURL)
+    .then((response) => {
+      dispatch({
+        type: GET,
+        payload: response,
+      });
+    });
 };
 
 export const post = (data) => async (dispatch) => {

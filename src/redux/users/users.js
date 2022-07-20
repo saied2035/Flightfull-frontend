@@ -5,9 +5,14 @@ const usersURL = 'http://localhost:3000/api/v1/users';
 const GET = 'get';
 const POST = 'post';
 
-export const get = async () => {
-  const res = await axios.get(usersURL);
-  return res;
+export const get = () => async (dispatch) => {
+  await axios.get(usersURL)
+    .then((response) => {
+      dispatch({
+        type: GET,
+        payload: response,
+      });
+    });
 };
 
 export const post = (data) => async (dispatch) => {
