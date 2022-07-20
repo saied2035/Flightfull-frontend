@@ -1,7 +1,8 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import reservationsReducer from './Reservations/Reservations';
 
-const rootReducer = combineReducers({/* put any reducers here spreated by comma */});
+const rootReducer = combineReducers({ reservationsReducer });
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default store;
