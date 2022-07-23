@@ -4,7 +4,8 @@ const Header = () => (
   <>
   <NavLink to="/">
     Home
-  </NavLink><NavLink to="/addItem">
+  </NavLink>
+  <NavLink to="/addItem">
       Add Item
     </NavLink>
     </>
