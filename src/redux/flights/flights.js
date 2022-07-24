@@ -39,19 +39,14 @@ export const remove = (id) => async (dispatch) => {
 const flightsReducer = (state = [], action) => {
   switch (action.type) {
     case GET:
-      return {
-        ...state,
-        flights: action.payload,
-      };
+      return action.payload;
 
     case POST:
       return action.payload;
 
     case DELETE:
-      return {
-        ...state,
-        flights: state.flights.filter((item) => item.id !== action.payload),
-      };
+      return  state.filter((item) => item.id !== action.payload);
+
     default:
       return state;
   }
