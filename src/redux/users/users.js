@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const usersURL = 'http://localhost:3000/api/v1/users';
+const usersURL = 'http://localhost:3001/api/v1/users';
 
 const GET = 'get';
 const POST = 'post';
