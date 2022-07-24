@@ -60,7 +60,6 @@ const initialState = {
   error: null,
 };
 const authReducer = (state = initialState, action = {}) => {
-  console.log(action);
   switch (action.type) {
     case REQUEST_USER:
       return { ...state, pending: action.payload };

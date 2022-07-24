@@ -12,7 +12,6 @@ const App = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const path = useSelector((state) => state.authReducer.path);
-  console.log(path);
   useEffect(() => {
     dispatch(fetchUser());
   }, []);
