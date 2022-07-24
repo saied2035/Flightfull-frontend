@@ -9,7 +9,7 @@ const ReservationList = () => {
   return (
     <>
       {pending && <p>Loading...</p>}
-      {!reservations && <p>You don&apos;t have any reservations!</p>}
+      {reservations && reservations.length === 0 && <p>You don&apos;t have any reservations!</p>}
       {
            reservations
            && reservations.map((reservation) => {

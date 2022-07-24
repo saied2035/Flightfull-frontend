@@ -2,9 +2,10 @@ const REQUEST_RESERVATIONS = 'REQUEST_RESERVATIONS';
 const LOAD_RESERVATIONS = 'LOAD_RESERVATIONS';
 const FAILED_RESERVATIONS = 'FAILED_RESERVATIONS';
 
-export const fetchReservations = () => (dispatch) => {
+export const fetchReservations = (userId) => (dispatch) => {
   dispatch({ type: REQUEST_RESERVATIONS, payload: true });
-  return fetch('http://127.0.0.1:3001/api/v1/reservations').then((response) => response.json())
+  return fetch(`http://127.0.0.1:3001/api/v1/users/${userId}/reservations`)
+    .then((response) => response.json())
     .then((result) => (result.Error
       ? dispatch({ type: FAILED_RESERVATIONS, payload: result })
       : dispatch({ type: LOAD_RESERVATIONS, payload: result })));
