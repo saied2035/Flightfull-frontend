@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Header from './components/Header/Header';
@@ -12,8 +12,10 @@ import { fetchReservations } from './redux/Reservations/Reservations';
 import { fetchUser } from './redux/auth/auth';
 
 const App = () => {
+  const path = useSelector((state) => state.authReducer.path);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.user);
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchUser());
   }, []);
@@ -21,6 +23,7 @@ const App = () => {
   useEffect(() => {
     if (path === '/signup') navigate(path);
   }, [path]);
+  useEffect(() => {
     if (user) dispatch(fetchReservations(user.id));
   }, [user]);
   return (
