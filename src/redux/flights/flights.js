@@ -19,6 +19,7 @@ export const get = () => async (dispatch) => {
 
 export const post = (data) => async (dispatch) => {
   await axios.post(itemsURL, data)
+    .then((response) => response.data)
     .then((response) => {
       dispatch({
         type: POST,
@@ -29,6 +30,7 @@ export const post = (data) => async (dispatch) => {
 
 export const remove = (id) => async (dispatch) => {
   await axios.delete(`${itemsURL}/${id}`)
+    .then((response) => response.data)
     .then((response) => {
       dispatch({
         type: DELETE,
