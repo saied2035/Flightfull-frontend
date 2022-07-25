@@ -6,6 +6,7 @@ import Header from './components/Header/Header';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import Homepage from './components/Homepage';
+import AddItem from './components/AddItem';
 import { fetchUser } from './redux/auth/auth';
 
 const App = () => {
@@ -17,7 +18,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (path) navigate(path);
+    if (path === '/signup') navigate(path);
   }, [path]);
   return (
     <>
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/" element={<Homepage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/AddItem" element={<AddItem />} />
       </Routes>
     </>
   );

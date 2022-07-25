@@ -1,21 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { post } from '../redux/flights/flights';
 
 const AddItem = () => {
   const user = useSelector((state) => state.authReducer.user);
-  console.log(user);
+  const item = useSelector((state) => state.flightsReducer);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
   const [flightNumber, setFlightNumber] = useState('');
   const [price, setPrice] = useState('');
+  useEffect(() => {
+    if (item.id) {
+      navigate(`/Item_detail/${item.id}`);
+    }
+  }, [item]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(post({
-      name, image, flight_Number: flightNumber, price,
+      name, image, flight_Number: flightNumber, price, user_id: user.id,
     }));
     setName('');
     setImage('');
