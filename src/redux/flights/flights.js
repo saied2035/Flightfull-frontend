@@ -18,7 +18,6 @@ export const get = () => async (dispatch) => {
 };
 
 export const post = (data) => async (dispatch) => {
-  console.log(data);
   await axios.post(itemsURL, data)
     .then((response) => response.data)
     .then((response) => {

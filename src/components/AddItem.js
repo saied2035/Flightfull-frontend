@@ -22,7 +22,7 @@ const AddItem = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(post({
-      name, image, flight_Number: flightNumber, price, user_id: user.id,
+      name, image, flight_number: flightNumber, price, user_id: user.id,
     }));
     setName('');
     setImage('');
