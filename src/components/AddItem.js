@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { post } from '../redux/flights/flights';
 
 const AddItem = () => {
+  const user = useSelector((state) => state.authReducer.user);
+  console.log(user);
   const dispatch = useDispatch();
 
   const [name, setName] = useState('');
