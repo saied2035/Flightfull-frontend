@@ -1,22 +1,51 @@
-import {useSelector} from 'react-redux'
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { createReservation } from '../../../redux/Reservations/Reservations';
+
 const AddReservation = () => {
-	const flights = useSelector((state) => state.flightsReducer);
-     return (
-     	  <main>
-     	    <label for="city">City: </label>
-     	    <input type="text" name="city"/>
-     	    <label for="date">Date: </label>
-     	    <input type="date" name="date"/>
-     	    {
-     	      flights && <label for="flight">Flight: </label> &&
-     	      <select name='flight'>
-                <option disabled selected value> -- select a flight -- </option>
-                {flights.map(flight => <option value={flight.id}>{flight.name}</option> )}
-              </select>
-            }
-            <button type='button'>Reserve</button>
-     	  </main>
-     	)
-}
+  const [city, setCity] = useState('');
+  const [date, setDate] = useState(null);
+  const [flightId, setFlightId] = useState(null);
+  const dispatch = useDispatch();
+  const flights = useSelector((state) => state.flightsReducer);
+  const user = useSelector((state) => state.authReducer.user);
+  return (
+    <main>
+      <label htmlFor="city">
+        City:
+        {' '}
+        <input type="text" name="city" onChange={(e) => setCity(e.target.value)} />
+      </label>
+      <label htmlFor="date">
+        Date:
+        {' '}
+        <input type="date" name="date" onChange={(e) => setDate(e.target.value)} />
+      </label>
+      {
+      flights && (
+      <label htmlFor="flight">
+        Flight:
+        <select name="flight" onChange={(e) => setFlightId(e.target.value)}>
+          <option value="" hidden> -- select an option -- </option>
+          {flights.map((flight) => (
+            <option key={flight.id} value={flight.id}>
+              {flight.name}
+            </option>
+          ))}
+        </select>
+      </label>
+      )
+      }
+      <button
+        type="button"
+        onClick={() => dispatch(createReservation({
+          city, date, item_id: parseInt(flightId, 10), user_id: user.id,
+        }))}
+      >
+        Reserve
+      </button>
+    </main>
+  );
+};
 
 export default AddReservation;

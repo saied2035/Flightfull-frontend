@@ -11,6 +11,7 @@ import ReservationList from './components/Reservations/Reservations';
 import AddReservation from './components/Reservations/AddReservation/AddReservation';
 import { fetchReservations } from './redux/Reservations/Reservations';
 import { fetchUser } from './redux/auth/auth';
+import { get } from './redux/flights/flights';
 
 const App = () => {
   const path = useSelector((state) => state.authReducer.path);
@@ -19,6 +20,10 @@ const App = () => {
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchUser());
+  }, []);
+
+  useEffect(() => {
+    dispatch(get());
   }, []);
 
   useEffect(() => {

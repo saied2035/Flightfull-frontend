@@ -1,10 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Slider from 'react-slick';
 import Proptypes from 'prop-types';
-import { get } from '../redux/flights/flights';
 
 const settings = {
   dots: true,
@@ -37,13 +36,7 @@ Flight.propTypes = {
 function Flights() {
   const flights = useSelector((state) => state.flightsReducer);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const path = useSelector((state) => state.authReducer.path);
-  useEffect(() => {
-    if (flights.length === 0) {
-      dispatch(get());
-    }
-  }, []);
 
   useEffect(() => {
     if (path) navigate(path);
