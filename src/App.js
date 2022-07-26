@@ -9,8 +9,10 @@ import Homepage from './components/Homepage';
 import AddItem from './components/AddItem';
 import ReservationList from './components/Reservations/Reservations';
 import DeleteItem from './components/DeleteItem';
+import AddReservation from './components/Reservations/AddReservation/AddReservation';
 import { fetchReservations } from './redux/Reservations/Reservations';
 import { fetchUser } from './redux/auth/auth';
+import { get } from './redux/flights/flights';
 
 const App = () => {
   const path = useSelector((state) => state.authReducer.path);
@@ -22,23 +24,28 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    dispatch(get());
+  }, []);
+
+  useEffect(() => {
     if (path === '/signup') navigate(path);
   }, [path]);
   useEffect(() => {
     if (user) dispatch(fetchReservations(user.id));
   }, [user]);
   return (
-    <>
+    <main className="MainSkleton">
       <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/reservations" element={<ReservationList />} />
+        <Route path="/reservations/add" element={<AddReservation />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/AddItem" element={<AddItem />} />
         <Route path="/DeleteItem" element={<DeleteItem />} />
       </Routes>
-    </>
+    </main>
   );
 };
 

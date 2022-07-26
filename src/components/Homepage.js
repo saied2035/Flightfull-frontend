@@ -1,24 +1,23 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Proptypes from 'prop-types';
-import { get } from '../redux/flights/flights';
 import { CustomNextArrow, CustomPrevArrow } from './CustomArrows';
 
 const responsive = {
   superLargeDesktop: {
     breakpoint: { max: 4000, min: 3000 },
-    items: 1,
+    items: 4,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 1,
+    items: 3,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 1,
+    items: 2,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
@@ -51,19 +50,17 @@ Flight.propTypes = {
 function Flights() {
   const flights = useSelector((state) => state.flightsReducer.flights);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const path = useSelector((state) => state.authReducer.path);
-  useEffect(() => {
-    if (flights.length === 0) {
-      dispatch(get());
-    }
-  }, []);
 
   useEffect(() => {
     if (path) navigate(path);
   }, [path]);
   return (
-    <>
+    <section className="MainPage">
+      <div className="MainTitle">
+        <h1>Recommended Flights</h1>
+        <p>please select a flight</p>
+      </div>
       <Carousel
         // partialVisible
         autoPlay
@@ -71,7 +68,7 @@ function Flights() {
         centerMode
         swipeable
         draggable={false}
-        showDots
+        showDots={false}
         responsive={responsive}
         ssr // means to render carousel on server-side.
         infinite
@@ -99,7 +96,7 @@ function Flights() {
           ))
         }
       </Carousel>
-    </>
+    </section>
   );
 }
 
