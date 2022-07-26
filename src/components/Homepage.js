@@ -49,7 +49,7 @@ Flight.propTypes = {
 };
 
 function Flights() {
-  const flights = useSelector((state) => state.flightsReducer);
+  const flights = useSelector((state) => state.flightsReducer.flights);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const path = useSelector((state) => state.authReducer.path);

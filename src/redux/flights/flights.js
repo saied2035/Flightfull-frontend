@@ -1,10 +1,12 @@
 import axios from 'axios';
 
 const itemsURL = 'http://localhost:3001/api/v1/items';
+const deleteItemUrl = 'http://localhost:3001/api/v1/users';
 
 const GET = 'get';
 const POST = 'post';
 const DELETE = 'delete';
+const FETCH = 'fetch';
 
 export const get = () => async (dispatch) => {
   await axios.get(itemsURL)
@@ -39,16 +41,35 @@ export const remove = (id) => async (dispatch) => {
     });
 };
 
-const flightsReducer = (state = [], action) => {
+export const fetchUserFlights = (userId) => async (dispatch) => {
+  await axios.get(`${deleteItemUrl}/${userId}/items/new`)
+    .then((response) => response.data)
+    .then((response) => {
+      dispatch({
+        type: FETCH,
+        payload: response,
+      });
+    });
+};
+const initialFlightState = { flights: [], createdFlight: [], userFlights: [] };
+const flightsReducer = (state = initialFlightState, action) => {
+  console.log(action);
   switch (action.type) {
     case GET:
-      return action.payload;
+      return { ...state, flights: action.payload };
 
     case POST:
-      return action.payload;
+      return { ...state, createdFlight: action.payload };
 
     case DELETE:
-      return state.filter((item) => item.id !== action.payload);
+      return {
+        ...state,
+        flights: state.flights.filter(
+          (flight) => flight.id !== action.payload.id,
+        ),
+      };
+    case FETCH:
+      return { ...state, userFlights: action.payload };
     default:
       return state;
   }

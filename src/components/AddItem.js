@@ -5,7 +5,7 @@ import { post } from '../redux/flights/flights';
 
 const AddItem = () => {
   const user = useSelector((state) => state.authReducer.user);
-  const item = useSelector((state) => state.flightsReducer);
+  const item = useSelector((state) => state.flightsReducer.createdFlight);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
