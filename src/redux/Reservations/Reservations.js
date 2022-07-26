@@ -3,21 +3,7 @@ const LOAD_RESERVATIONS = 'LOAD_RESERVATIONS';
 const FAILED_RESERVATIONS = 'FAILED_RESERVATIONS';
 
 const SUCCESS_CREATE_RESERVATION = 'SUCCESS_CREATE_RESERVATION';
-
-export const createReservation = (data) => (dispatch) => (
-  fetch(`http://127.0.0.1:3001/api/v1/users/${data.user_id}/reservations`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ item_id: data.item_id, city: data.city, date: data.date }),
-  })
-    .then((response) => response.json())
-    .then((result) => result.success && dispatch({
-      type: SUCCESS_CREATE_RESERVATION,
-      payload: result.success,
-    }))
-);
+const FAILED_CREATE_RESERVATION = 'FAILED_CREATE_RESERVATION';
 
 export const fetchReservations = (userId) => (dispatch) => {
   dispatch({ type: REQUEST_RESERVATIONS, payload: true });
@@ -28,13 +14,32 @@ export const fetchReservations = (userId) => (dispatch) => {
       : dispatch({ type: LOAD_RESERVATIONS, payload: result })));
 };
 
+export const createReservation = (data) => (dispatch) => (
+  fetch(`http://127.0.0.1:3001/api/v1/users/${data.user_id}/reservations`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ item_id: data.item_id, city: data.city, date: data.date }),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      if (result.success) {
+        dispatch(fetchReservations(data.user_id));
+        dispatch({ type: SUCCESS_CREATE_RESERVATION, payload: result.success });
+      } else {
+        dispatch({ type: FAILED_CREATE_RESERVATION, payload: result.failure });
+      }
+    })
+    .catch(() => dispatch({ type: FAILED_CREATE_RESERVATION, payload: 'Please choose the date' }))
+);
+
 const initialReservationsState = {
   pending: false,
   reservations: [],
   error: '',
   success: false,
 };
-
 const reservationsReducer = (state = initialReservationsState, action = {}) => {
   console.log(action);
   switch (action.type) {
@@ -42,6 +47,7 @@ const reservationsReducer = (state = initialReservationsState, action = {}) => {
       return { ...state, pending: action.payload };
     case LOAD_RESERVATIONS:
       return { ...state, reservations: action.payload, pending: false };
+    case FAILED_CREATE_RESERVATION:
     case FAILED_RESERVATIONS:
       return { ...state, error: action.payload, pending: false };
     case SUCCESS_CREATE_RESERVATION:
