@@ -1,39 +1,68 @@
-.App {
+.MainSkleton {
+  display: grid;
+  grid-template-columns: 2fr 8fr;
+  column-gap: 2rem;
+  height: 100vh;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12% 0%;
+  border-right: solid rgb(175, 175, 175) 1px;
+}
+
+.NavLinksList {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  text-decoration: none;
+  padding: 0;
+}
+
+.NavLink {
+  width: 20vw;
+  margin: 1% 0;
+  height: 60px;
   text-align: center;
+  padding: 20px 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.NavLink a {
+  text-decoration: none;
+  color: black;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.NavLink:hover {
+  background-color: #97bf0f;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.NavFooter {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.SocialMediaBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 15vw;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+.MainPage {
+  display: flex;
+  flex-direction: column;
+  width: 75vw;
 }
+
+.MainTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10%;
+}
+
+/* end of the nvigation side bar styles */

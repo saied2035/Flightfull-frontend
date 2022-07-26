@@ -33,7 +33,7 @@ const App = () => {
     if (user) dispatch(fetchReservations(user.id));
   }, [user]);
   return (
-    <>
+    <main className="MainSkleton">
       <Header />
       <Routes>
         <Route path="/" element={<Homepage />} />
@@ -43,7 +43,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/AddItem" element={<AddItem />} />
       </Routes>
-    </>
+    </main>
   );
 };
 
