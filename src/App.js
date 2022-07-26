@@ -8,6 +8,7 @@ import Signup from './components/Signup/Signup';
 import Homepage from './components/Homepage';
 import AddItem from './components/AddItem';
 import ReservationList from './components/Reservations/Reservations';
+import DeleteItem from './components/DeleteItem';
 import { fetchReservations } from './redux/Reservations/Reservations';
 import { fetchUser } from './redux/auth/auth';
 
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/AddItem" element={<AddItem />} />
+        <Route path="/DeleteItem" element={<DeleteItem />} />
       </Routes>
     </>
   );
