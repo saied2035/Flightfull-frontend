@@ -30,17 +30,6 @@ export const post = (data) => async (dispatch) => {
     });
 };
 
-export const remove = (id) => async (dispatch) => {
-  await axios.delete(`${itemsURL}/${id}`)
-    .then((response) => response.data)
-    .then((response) => {
-      dispatch({
-        type: DELETE,
-        payload: response,
-      });
-    });
-};
-
 export const fetchUserFlights = (userId) => async (dispatch) => {
   await axios.get(`${deleteItemUrl}/${userId}/items/new`)
     .then((response) => response.data)
@@ -51,6 +40,19 @@ export const fetchUserFlights = (userId) => async (dispatch) => {
       });
     });
 };
+
+export const remove = (id) => async (dispatch) => {
+  await axios.delete(`${itemsURL}/${id}`)
+    .then((response) => response.data)
+    .then((response) => {
+      dispatch({
+        type: DELETE,
+        payload: response.items,
+      });
+      dispatch(fetchUserFlights(response.user.id));
+    });
+};
+
 const initialFlightState = { flights: [], createdFlight: [], userFlights: [] };
 const flightsReducer = (state = initialFlightState, action) => {
   console.log(action);
