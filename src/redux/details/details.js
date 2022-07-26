@@ -1,5 +1,5 @@
 const ITEM_DETAILS = 'ITEM_DETAILS';
-
+const FETCH_ITEM_FAILURE = 'FETCH_ITEM_FAILURE'
 const initialState = [];
 
 export const fetchItemDetails = (payload) => ({
