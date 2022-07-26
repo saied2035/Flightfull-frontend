@@ -55,7 +55,6 @@ export const remove = (id) => async (dispatch) => {
 
 const initialFlightState = { flights: [], createdFlight: [], userFlights: [] };
 const flightsReducer = (state = initialFlightState, action) => {
-  console.log(action);
   switch (action.type) {
     case GET:
       return { ...state, flights: action.payload };
