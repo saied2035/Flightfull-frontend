@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Proptypes from 'prop-types';
-import { get } from '../redux/flights/flights';
 import { CustomNextArrow, CustomPrevArrow } from './CustomArrows';
 
 const responsive = {
@@ -51,13 +50,7 @@ Flight.propTypes = {
 function Flights() {
   const flights = useSelector((state) => state.flightsReducer);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const path = useSelector((state) => state.authReducer.path);
-  useEffect(() => {
-    if (flights.length === 0) {
-      dispatch(get());
-    }
-  }, []);
 
   useEffect(() => {
     if (path) navigate(path);

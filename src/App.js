@@ -8,8 +8,10 @@ import Signup from './components/Signup/Signup';
 import Homepage from './components/Homepage';
 import AddItem from './components/AddItem';
 import ReservationList from './components/Reservations/Reservations';
+import AddReservation from './components/Reservations/AddReservation/AddReservation';
 import { fetchReservations } from './redux/Reservations/Reservations';
 import { fetchUser } from './redux/auth/auth';
+import { get } from './redux/flights/flights';
 
 const App = () => {
   const path = useSelector((state) => state.authReducer.path);
@@ -18,6 +20,10 @@ const App = () => {
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(fetchUser());
+  }, []);
+
+  useEffect(() => {
+    dispatch(get());
   }, []);
 
   useEffect(() => {
@@ -32,6 +38,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/reservations" element={<ReservationList />} />
+        <Route path="/reservations/add" element={<AddReservation />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/AddItem" element={<AddItem />} />
