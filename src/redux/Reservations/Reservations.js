@@ -63,7 +63,6 @@ const initialReservationsState = {
 };
 
 const reservationsReducer = (state = initialReservationsState, action = {}) => {
-  console.log(action);
   switch (action.type) {
     case REQUEST_RESERVATIONS:
       return { ...state, pending: action.payload };
