@@ -11,7 +11,7 @@ const DeleteItem = () => {
     if (user && !userFlights.length) {
       dispatch(fetchUserFlights(user.id));
     }
-  }, [user, userFlights]);
+  }, []);
 
   return (
     userFlights && (

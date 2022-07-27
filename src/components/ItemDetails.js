@@ -1,9 +1,11 @@
 import { useParams, NavLink, useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const DetailsPage = () => {
   const { id } = useParams();
+  const createdFlight = useSelector((state) => state.flightsReducer.createdFlight);
   const { state } = useLocation();
-  const { item } = state || { item: null };
+  const { item } = state || { item: createdFlight } || { item: null };
   return (
     item && (
     <div className="reservation">
@@ -13,7 +15,7 @@ const DetailsPage = () => {
       </p>
       <p>
         Flight number:
-        {item.flightNumber}
+        {item.flight_number}
       </p>
       <img alt="flight-pic" src={item.image} />
       <p>

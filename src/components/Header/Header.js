@@ -25,7 +25,7 @@ const Header = () => (
         </NavLink>
       </li>
       <li className="NavLink">
-        <NavLink to="/">
+        <NavLink to="/DeleteItem">
           Delete Flight
         </NavLink>
       </li>

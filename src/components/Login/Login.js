@@ -3,14 +3,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { login, resetError } from '../../redux/auth/auth';
 
 const Login = () => {
+  const user = useSelector((state) => state.authReducer.user);
   const error = useSelector((state) => state.authReducer.error);
   const dispatch = useDispatch();
 
   return (
     <>
-      { localStorage.token && <Navigate to="/" /> }
+      { user && <Navigate to="/" /> }
       {
-      !localStorage.token && (
+      !user && (
       <main id="login">
         <input className="login-name" type="text" />
         <button
