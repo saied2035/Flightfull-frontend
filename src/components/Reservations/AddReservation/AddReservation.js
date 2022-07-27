@@ -19,18 +19,20 @@ const AddReservation = () => {
 
     <>
       {success && <Navigate to="/reservations" replace />}
-      <main>
-        <label htmlFor="city">
-          City:
-          {' '}
-          <input type="text" name="city" onChange={(e) => setCity(e.target.value)} />
-        </label>
-        <label htmlFor="date">
-          Date:
-          {' '}
-          <input type="date" name="date" onChange={(e) => setDate(e.target.value)} />
-        </label>
-        {
+      {
+        user && (
+        <main>
+          <label htmlFor="city">
+            City:
+            {' '}
+            <input type="text" name="city" onChange={(e) => setCity(e.target.value)} />
+          </label>
+          <label htmlFor="date">
+            Date:
+            {' '}
+            <input type="date" name="date" onChange={(e) => setDate(e.target.value)} />
+          </label>
+          {
       flights && !itemId && (
       <label htmlFor="flight">
         Flight:
@@ -45,19 +47,21 @@ const AddReservation = () => {
       </label>
       )
       }
-        <button
-          type="button"
-          onClick={() => dispatch(createReservation({
-            city,
-            date,
-            item_id: itemId ? parseInt(itemId.item_id, 10) : parseInt(flightId, 10),
-            user_id: user.id,
-          }))}
-        >
-          Reserve
-        </button>
-        {error.length > 0 && <p>{error}</p>}
-      </main>
+          <button
+            type="button"
+            onClick={() => dispatch(createReservation({
+              city,
+              date,
+              item_id: itemId ? parseInt(itemId.item_id, 10) : parseInt(flightId, 10),
+              user_id: user.id,
+            }))}
+          >
+            Reserve
+          </button>
+          {error.length > 0 && <p>{error}</p>}
+        </main>
+        )
+      }
     </>
   );
 };

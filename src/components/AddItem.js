@@ -31,6 +31,7 @@ const AddItem = () => {
   };
 
   return (
+    user && (
     <div>
       <h1>Add New Item</h1>
       <form onSubmit={(e) => handleSubmit(e)}>
@@ -53,6 +54,7 @@ const AddItem = () => {
         <input type="submit" value="Submit" />
       </form>
     </div>
+    )
   );
 };
 

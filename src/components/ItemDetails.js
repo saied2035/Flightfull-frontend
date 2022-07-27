@@ -3,7 +3,7 @@ import { useParams, NavLink, useLocation } from 'react-router-dom';
 const DetailsPage = () => {
   const { id } = useParams();
   const { state } = useLocation();
-  const { item } = state;
+  const { item } = state || { item: null };
   return (
     item && (
     <div className="reservation">

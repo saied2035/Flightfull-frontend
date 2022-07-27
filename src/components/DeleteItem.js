@@ -14,6 +14,7 @@ const DeleteItem = () => {
   }, [user, userFlights]);
 
   return (
+    userFlights && (
     <div>
       <h1>Delete Item</h1>
       <ul>
@@ -28,6 +29,7 @@ const DeleteItem = () => {
         ))}
       </ul>
     </div>
+    )
   );
 };
 export default DeleteItem;
