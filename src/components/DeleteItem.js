@@ -19,10 +19,19 @@ const DeleteItem = () => {
       <ul>
         {userFlights.map((flight) => (
           <li key={flight.id}>
-            <p>{flight.name}</p>
-            <p>{flight.flight_number}</p>
-            <p>{flight.price}</p>
-            <p>{flight.image}</p>
+            <p>
+              Name:
+              {flight.name}
+            </p>
+            <p>
+              Flight number:
+              {flight.flight_number}
+            </p>
+            <p>
+              Price:
+              {flight.price}
+            </p>
+            <img alt="flight-pic" src={flight.image} />
             <button type="button" onClick={() => dispatch(remove(flight.id))}>Delete</button>
           </li>
         ))}

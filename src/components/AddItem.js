@@ -10,13 +10,22 @@ const AddItem = () => {
 
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
+  const [imageSrc, setImageSrc] = useState('');
   const [flightNumber, setFlightNumber] = useState('');
   const [price, setPrice] = useState('');
 
+  const imageToSrc = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = async () => {
+      const result = await reader.result;
+      setImageSrc(result);
+    };
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(post({
-      name, image, flight_number: flightNumber, price, user_id: user.id,
+      name, image: imageSrc, flight_number: flightNumber, price, user_id: user.id,
     }, navigate));
     setName('');
     setImage('');
@@ -35,7 +44,25 @@ const AddItem = () => {
         </label>
         <label htmlFor="image">
           Image:
-          <input type="text" name="image" value={image} onChange={(e) => setImage(e.target.value)} />
+          <input
+            type="button"
+            onClick={() => {
+              const imageInput = document.querySelector('#add-image');
+              imageInput.click();
+            }}
+            value={image ? `${image.split('\\')[2]}` : 'Flight image'}
+          />
+          <input
+            id="add-image"
+            className="dn"
+            type="file"
+            name="image"
+            accept="image/*"
+            onChange={(e) => {
+              setImage(e.target.value);
+              imageToSrc(e.target.files[0]);
+            }}
+          />
         </label>
         <label htmlFor="flightNumber">
           Flight Number:
