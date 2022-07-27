@@ -1,19 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchUserFlights, remove } from '../redux/flights/flights';
 
-const DeleteItem = () => (
-  <div>
-    <h1>Delete Item</h1>
-    <form>
-      <label htmlFor="name">
-        Name:
-        <input type="text" name="name" />
-      </label>
-      <label htmlFor="flightNumber">
-        Flight Number:
-        <input type="text" name="flightNumber" />
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
-  </div>
-);
+const DeleteItem = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.authReducer.user);
+  const userFlights = useSelector((state) => state.flightsReducer.userFlights);
+
+  useEffect(() => {
+    if (user && !userFlights.length) {
+      dispatch(fetchUserFlights(user.id));
+    }
+  }, [user, userFlights]);
+
+  return (
+    <div>
+      <h1>Delete Item</h1>
+      <ul>
+        {userFlights.map((flight) => (
+          <li key={flight.id}>
+            <p>{flight.name}</p>
+            <p>{flight.flight_number}</p>
+            <p>{flight.price}</p>
+            <p>{flight.image}</p>
+            <button type="button" onClick={() => dispatch(remove(flight.id))}>Delete</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 export default DeleteItem;
