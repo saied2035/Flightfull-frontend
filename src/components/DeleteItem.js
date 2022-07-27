@@ -6,28 +6,38 @@ const DeleteItem = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.user);
   const userFlights = useSelector((state) => state.flightsReducer.userFlights);
-
   useEffect(() => {
-    if (user && !userFlights.length) {
+    if (user) {
       dispatch(fetchUserFlights(user.id));
     }
-  }, [user, userFlights]);
+  }, [user]);
 
   return (
+    userFlights && (
     <div>
       <h1>Delete Item</h1>
       <ul>
         {userFlights.map((flight) => (
           <li key={flight.id}>
-            <p>{flight.name}</p>
-            <p>{flight.flight_number}</p>
-            <p>{flight.price}</p>
-            <p>{flight.image}</p>
+            <p>
+              Name:
+              {flight.name}
+            </p>
+            <p>
+              Flight number:
+              {flight.flight_number}
+            </p>
+            <p>
+              Price:
+              {flight.price}
+            </p>
+            <img alt="flight-pic" src={flight.image} />
             <button type="button" onClick={() => dispatch(remove(flight.id))}>Delete</button>
           </li>
         ))}
       </ul>
     </div>
+    )
   );
 };
 export default DeleteItem;

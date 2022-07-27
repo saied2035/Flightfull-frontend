@@ -1,20 +1,17 @@
-import { useEffect } from 'react';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { login, resetError } from '../../redux/auth/auth';
 
 const Login = () => {
-  const path = useSelector((state) => state.authReducer.path);
+  const user = useSelector((state) => state.authReducer.user);
   const error = useSelector((state) => state.authReducer.error);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (path === '/') navigate(path);
-  }, [path]);
+
   return (
     <>
+      { user && <Navigate to="/" /> }
       {
-      !localStorage.getItem('token') && (
+      !user && (
       <main id="login">
         <input className="login-name" type="text" />
         <button
