@@ -1,9 +1,11 @@
-import { Navigate } from 'react-router-dom';
-import { useState } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { createReservation } from '../../../redux/Reservations/Reservations';
+import { createReservation, resetReservation } from '../../../redux/Reservations/Reservations';
 
 const AddReservation = () => {
+  const location = useLocation();
+  const { state: itemId } = location;
   const success = useSelector((state) => state.reservationsReducer.success);
   const error = useSelector((state) => (state.reservationsReducer.error));
   const [city, setCity] = useState('');
@@ -12,7 +14,7 @@ const AddReservation = () => {
   const dispatch = useDispatch();
   const flights = useSelector((state) => state.flightsReducer.flights);
   const user = useSelector((state) => state.authReducer.user);
-
+  useEffect(() => { if (success) dispatch(resetReservation()); }, [success]);
   return (
 
     <>
@@ -29,7 +31,7 @@ const AddReservation = () => {
           <input type="date" name="date" onChange={(e) => setDate(e.target.value)} />
         </label>
         {
-      flights && (
+      flights && !itemId && (
       <label htmlFor="flight">
         Flight:
         <select name="flight" onChange={(e) => setFlightId(e.target.value)}>
@@ -46,7 +48,10 @@ const AddReservation = () => {
         <button
           type="button"
           onClick={() => dispatch(createReservation({
-            city, date, item_id: parseInt(flightId, 10), user_id: user.id,
+            city,
+            date,
+            item_id: itemId ? parseInt(itemId.item_id, 10) : parseInt(flightId, 10),
+            user_id: user.id,
           }))}
         >
           Reserve

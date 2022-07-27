@@ -9,6 +9,7 @@ import Homepage from './components/Homepage';
 import AddItem from './components/AddItem';
 import ReservationList from './components/Reservations/Reservations';
 import DeleteItem from './components/DeleteItem';
+import DetailsPage from './components/ItemDetails';
 import AddReservation from './components/Reservations/AddReservation/AddReservation';
 import { fetchReservations } from './redux/Reservations/Reservations';
 import { fetchUser } from './redux/auth/auth';
@@ -42,6 +43,7 @@ const App = () => {
         <Route path="/reservations/add" element={<AddReservation />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/Item_detail/:id" element={<DetailsPage />} />
         <Route path="/AddItem" element={<AddItem />} />
         <Route path="/DeleteItem" element={<DeleteItem />} />
       </Routes>

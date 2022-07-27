@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Proptypes from 'prop-types';
@@ -84,15 +84,15 @@ function Flights() {
         customLeftArrow={<CustomNextArrow />}
       >
         {
-          flights.map((Item) => (
-            <Link to={`Item_detail/${Item.id}`} key={Item.id}>
+          flights.map((item) => (
+            <NavLink to={`Item_detail/${item.id}`} state={{ item }} key={item.id}>
               <Flight
-                name={Item.name}
-                image={Item.image}
-                flightNumber={Item.flight_number}
-                price={Item.price}
+                name={item.name}
+                image={item.image}
+                flightNumber={item.flight_number}
+                price={item.price}
               />
-            </Link>
+            </NavLink>
           ))
         }
       </Carousel>
