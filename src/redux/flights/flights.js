@@ -43,6 +43,7 @@ export const post = (data, navigate) => async (dispatch) => {
         payload: response,
       });
       dispatch(get());
+      dispatch(fetchUserFlights(data.user_id));
     });
 };
 

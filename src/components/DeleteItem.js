@@ -6,12 +6,11 @@ const DeleteItem = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.authReducer.user);
   const userFlights = useSelector((state) => state.flightsReducer.userFlights);
-
   useEffect(() => {
-    if (user && !userFlights.length) {
+    if (user) {
       dispatch(fetchUserFlights(user.id));
     }
-  }, []);
+  }, [user]);
 
   return (
     userFlights && (
