@@ -10,7 +10,7 @@ const DetailsPage = () => {
   const user = useSelector((state) => state.authReducer.user);
 
   const {
-    name, flight_number, image, price
+    name, flight_number, image, price,
   } = item;
 
   useEffect(() => {
@@ -22,16 +22,16 @@ const DetailsPage = () => {
     const item_id = id;
     // You can uncomment these lines but firstly you need to create reserveItem and removeReservedItem functions
 
-    /* 
+    /*
        if (e.target.value === 'reserve') {
-      
+
        dispatch(reserveItem({ user_id, item_id }));
        dispatch(getItemDetails(id));
       } else if (e.target.value === 'unreserve') {
        dispatch(removeReservedItem({ user_id, item_id }));
        dispatch(getItemDetails(id));
       }
-     
+
      */
   });
 

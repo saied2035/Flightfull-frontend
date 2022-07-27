@@ -10,7 +10,7 @@ const AddReservation = () => {
   const [date, setDate] = useState(null);
   const [flightId, setFlightId] = useState(null);
   const dispatch = useDispatch();
-  const flights = useSelector((state) => state.flightsReducer);
+  const flights = useSelector((state) => state.flightsReducer.flights);
   const user = useSelector((state) => state.authReducer.user);
 
   return (
