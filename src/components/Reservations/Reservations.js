@@ -1,3 +1,4 @@
+import './Reservations.css';
 import { useSelector } from 'react-redux';
 import Reservation from './Reservation/Reservation';
 
@@ -7,7 +8,7 @@ const ReservationList = () => {
   const error = useSelector((state) => (state.reservationsReducer.error
     ? state.reservationsReducer.error : ''));
   return (
-    <>
+    <section className="" id="reservations">
       {pending && <p>Loading...</p>}
       {reservations && reservations.length === 0 && <p>You don&apos;t have any reservations!</p>}
       {
@@ -31,7 +32,7 @@ const ReservationList = () => {
            })
         }
       {error.Error && <p>{error}</p>}
-    </>
+    </section>
   );
 };
 export default ReservationList;
