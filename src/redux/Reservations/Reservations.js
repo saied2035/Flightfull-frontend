@@ -8,6 +8,10 @@ const FAILED_CREATE_RESERVATION = 'FAILED_CREATE_RESERVATION';
 const SUCCESS_DELETE_RESERVATION = 'SUCCESS_DELETE_RESERVATION';
 const FAILED_DELETE_RESERVATION = 'FAILED_DELETE_RESERVATION';
 
+const RESET_RESERVATION = 'RESET_RESERVATION';
+export const resetReservation = () => ({
+  type: RESET_RESERVATION,
+});
 export const fetchReservations = (userId) => (dispatch) => {
   dispatch({ type: REQUEST_RESERVATIONS, payload: true });
   return fetch(`http://127.0.0.1:3001/api/v1/users/${userId}/reservations`)
@@ -76,7 +80,11 @@ const reservationsReducer = (state = initialReservationsState, action = {}) => {
       return { ...state, success: true };
     case SUCCESS_DELETE_RESERVATION:
       return {
-        ...state, reservations: action.payload, pending: false, success: true,
+        ...state, reservations: action.payload, pending: false,
+      };
+    case RESET_RESERVATION:
+      return {
+        ...state, success: false,
       };
     default:
       return state;

@@ -1,3 +1,6 @@
+import { get } from '../flights/flights';
+import { fetchReservations } from '../Reservations/Reservations';
+
 const REQUEST_USER = 'REQUEST_USER';
 const LOAD_USER = 'LOAD_USER';
 const FAILED_USER = 'FAILED_USER';
@@ -17,8 +20,10 @@ export const signup = (name) => (dispatch) => {
     .then((response) => response.json())
     .then((result) => {
       if (result.token) localStorage.setItem('token', result.token);
-      return result.user ? dispatch({ type: LOAD_USER, payload: result.user, path: '/' })
-        : dispatch({ type: FAILED_USER, payload: result.errors, path: '' });
+      dispatch(get());
+      dispatch(fetchReservations(result.user.id));
+      return result.user ? dispatch({ type: LOAD_USER, payload: result.user })
+        : dispatch({ type: FAILED_USER, payload: result.errors });
     });
 };
 
@@ -34,9 +39,11 @@ export const login = (name) => (dispatch) => {
     .then((response) => response.json())
     .then((result) => {
       localStorage.setItem('token', result.token);
-      return dispatch({ type: LOAD_USER, payload: result.user, path: '/' });
+      dispatch(get());
+      dispatch(fetchReservations(result.user.id));
+      return dispatch({ type: LOAD_USER, payload: result.user });
     })
-    .catch(() => dispatch({ type: FAILED_USER, payload: 'You need to sign up first.', path: '' }));
+    .catch(() => dispatch({ type: FAILED_USER, payload: 'You need to sign up first.' }));
 };
 
 export const fetchUser = () => (dispatch) => {
@@ -49,14 +56,17 @@ export const fetchUser = () => (dispatch) => {
     },
   })
     .then((response) => response.json())
-    .then((user) => dispatch({ type: LOAD_USER, payload: user, path: '/' }))
-    .catch(() => dispatch({ type: FAILED_USER, payload: '', path: '/signup' }));
+    .then((user) => {
+      dispatch({ type: LOAD_USER, payload: user });
+      dispatch(get());
+      dispatch(fetchReservations(user.id));
+    })
+    .catch(() => dispatch({ type: FAILED_USER, payload: '' }));
 };
 
 const initialState = {
   user: null,
   pending: false,
-  path: null,
   error: null,
 };
 const authReducer = (state = initialState, action = {}) => {
@@ -65,11 +75,11 @@ const authReducer = (state = initialState, action = {}) => {
       return { ...state, pending: action.payload };
     case LOAD_USER:
       return {
-        ...state, user: action.payload, pending: false, path: action.path,
+        ...state, user: action.payload, pending: false,
       };
     case FAILED_USER:
       return {
-        ...state, path: action.path, error: action.payload, pending: false,
+        ...state, error: action.payload, pending: false,
       };
     case RESET_ERROR:
       return {
