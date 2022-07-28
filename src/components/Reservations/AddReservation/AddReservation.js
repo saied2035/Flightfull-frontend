@@ -2,6 +2,7 @@ import '../Reservations.css';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import cities from './cities';
 import { createReservation, resetReservation } from '../../../redux/Reservations/Reservations';
 
 const AddReservation = () => {
@@ -26,37 +27,60 @@ const AddReservation = () => {
           className="add-reservation flex relative flex-column items-center justify-center mt3 mr3 mb0 ml0"
           style={{ zIndex: 5, height: '95vh', gap: '1rem' }}
         >
-          <h1 className="ma0">Book your flight now</h1>
+          <h1 className="ma0 white">Book your flight</h1>
           <hr className="white w5 m0" />
-          <p />
+          <p className="w-50 center tc f4 fw6 white">
+            There are lot pf flights you can reserve to more than 4000 cities around the world.
+            pick your seat now!
+          </p>
           <div style={{ zIndex: -1 }} className="background absolute w-100 h-100" />
-          <label style={{ flex: 0 }} className="flex items-end w-25" htmlFor="city">
-            <span style={{ flex: 0.5 }}>City:</span>
-            {' '}
-            <input style={{ flex: 1 }} className="w-100" type="text" name="city" onChange={(e) => setCity(e.target.value)} />
-          </label>
-          <label style={{ flex: 0 }} className="flex items-end w-25" htmlFor="date">
-            <span style={{ flex: 0.5 }}>Date:</span>
-            {' '}
-            <input style={{ flex: 1 }} className="w-100" type="date" name="date" onChange={(e) => setDate(e.target.value)} />
-          </label>
-          {
+          <div className="custom-select w-20">
+
+            <select
+              className="w-100 br3 ba b--white pa2 pl0 pr0"
+              name="flight"
+              onChange={(e) => setCity(e.target.value)}
+            >
+              <option value="" hidden> -- select a city -- </option>
+              {cities.map((city) => (
+                <option key={city.id} value={city.name}>
+                  {city.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <input
+            className="white w-20 br3 ba b--white pa2 pl0 pr0 bg-transparent"
+            type="date"
+            name="date"
+            onChange={(e) => setDate(e.target.value)}
+          />
+          <div className="custom-select w-20">
+            {
       flights && !itemId && (
-      <label className="relative flex items-end w-25" htmlFor="flight">
-        <span style={{ flex: 0.5 }}>Flight:</span>
-        <select style={{ flex: 1 }} name="flight" onChange={(e) => setFlightId(e.target.value)}>
-          <option value="" hidden> -- select an option -- </option>
+        <select
+          className="w-100 br3 ba b--white pa2 pl0 pr0"
+          name="flight"
+          onChange={(e) => setFlightId(e.target.value)}
+        >
+          <option value="" hidden> -- select a flight -- </option>
           {flights.map((flight) => (
             <option key={flight.id} value={flight.id}>
               {flight.name}
             </option>
           ))}
         </select>
-      </label>
       )
       }
+          </div>
           <button
-            style={{ flex: 0 }}
+            style={{
+              flex: 0,
+              color: 'rgba(150, 191, 1, 0.85)',
+              borderRadius: '2rem',
+              padding: '1rem 2.8rem',
+            }}
+            className="pointer fw6 bg-white b--none"
             type="button"
             onClick={() => dispatch(createReservation({
               city,
@@ -67,7 +91,7 @@ const AddReservation = () => {
           >
             Reserve
           </button>
-          {error.length > 0 && <p>{error}</p>}
+          {error.length > 0 && <p className="red shadow-5 f4 pa1 fw6 b ">{error}</p>}
         </main>
         )
       }
