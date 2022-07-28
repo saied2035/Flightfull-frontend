@@ -1,6 +1,8 @@
 ## BOOK-FLIGHT-BACKEND
 > BOOK-FLIGHT-backEND to is a RESTful API that allows users to book a flight.
 
+![image](https://user-images.githubusercontent.com/78906545/181632616-d89e686f-7cb5-4089-a4df-cc85c344ca7a.png)
+
 
 ## Built With
 
@@ -11,6 +13,15 @@
 
  [Pull Requests](https://github.com/ZahraArshia/book-flight-backend/pulls)
  [Kanban Board](https://github.com/ZahraArshia/book-flight-backend/projects/1)
+
+## Kanban Board
+### Current state
+[Kanban Board](https://github.com/ZahraArshia/book-flight-frontend/projects/1)
+
+
+### Initial State
+![image](https://user-images.githubusercontent.com/78906545/181632939-840911e5-0e7a-42a6-a71e-220c0a534289.png)
+
 
 
 ## Getting Started
