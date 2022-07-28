@@ -31,7 +31,8 @@
   padding: 0;
 }
 
-.NavLink,.logo {
+.NavLink,
+.logo {
   width: 20vw;
   margin: 1% 0;
   height: 60px;
@@ -48,10 +49,7 @@ a {
   background-color: #97bf0f;
   color: white;
 }
-.NavLink:first-child:hover {
-  background-color: none;
-  color: none;
-}
+
 .NavFooter {
   display: flex;
   flex-direction: column;
