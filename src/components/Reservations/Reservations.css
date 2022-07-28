@@ -32,37 +32,41 @@
 }
 
 .custom-select select option {
-  
   background: none;
   background-color: rgba(150, 191, 1, 0.85);
 }
+
 .add-reservation-container {
-	height: 95vh;
+  height: 95vh;
 }
 
 #reservations {
-	border: 1px solid black;
-	width:  100%;
-	margin-right: 2rem;
-	overflow-y: auto;
-	margin-bottom: 1rem ;
-	background-color:  rgba(150, 191, 1, 0.85);
+  height: 80vh;
+  border: 1px solid black;
+  width: 100%;
+  margin-right: 2rem;
+  overflow-y: auto;
+  margin-bottom: 1rem;
+  background-color: rgba(150, 191, 1, 0.85);
 }
+
 .reservation {
-	gap: 1rem;
-	padding: 8px;
-	border-top: 1px solid black;
-	justify-content: space-evenly;
+  gap: 1rem;
+  padding: 8px;
+  border-top: 1px solid black;
+  justify-content: space-evenly;
 }
+
 .reservation:first-child {
-	border-top: none;
+  border-top: none;
 }
 
 @media only screen and (max-width: 960px) {
   .add-reservation-container {
-  	height: 100vh;
+    height: 100vh;
   }
+
   #reservations {
-  	margin-right: 0;
+    margin-right: 0;
   }
 }

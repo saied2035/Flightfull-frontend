@@ -10,9 +10,9 @@ const ReservationList = () => {
   return (
     <div className="static-ns absolute-m absolute">
       <h1 className="tc" style={{ marginRight: '2rem' }}>reservations</h1>
-      <section className="flex flex-column" id="reservations">
+      <section className="flex flex-column center" id="reservations">
         <div className="flex items-center center w-100">
-          <p style={{ flex: 0 }} className="pa1 bg-black white flex justify-center">Image</p>
+          <p style={{ flex: 1 }} className="pa1 bg-black white flex justify-center">Image</p>
           <p style={{ flex: 1 }} className="pa1 bg-black white flex justify-center">Details</p>
           <p style={{ flex: 1 }} className="pa1 bg-black white flex justify-center">Date</p>
           <p style={{ flex: 1 }} className="pa1 bg-black white flex justify-center">Action</p>
