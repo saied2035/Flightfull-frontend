@@ -23,7 +23,7 @@
 - Navigate to the created folder.
 
   ```
-  cd Book-Store
+  cd book-flight-frontend
   ```
 
 - To get started, In the root directory run:
