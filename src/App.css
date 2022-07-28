@@ -145,7 +145,6 @@ a {
 
 .detailsList {
   margin: 25px;
-  width: 100%;
 }
 
 .detailsList li {
@@ -173,6 +172,37 @@ a {
   margin-top: 2rem;
   position: absolute;
   right: 7%;
+}
+
+@media screen and (max-width: 640px) {
+  .detailMain {
+    grid-template-columns: 1fr;
+  }
+
+  .CustomPrevArrow {
+    display: none;
+  }
+
+  .detailsList {
+    margin: 0;
+  }
+
+  nav {
+    font-size: xx-small;
+  }
+
+  .SocialMediaBox {
+    display: none;
+  }
+
+  .MainTitle {
+    font-size: xx-small;
+  }
+
+  .itemsCard img {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 /* end of details page styles */
