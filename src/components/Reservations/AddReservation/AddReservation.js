@@ -93,7 +93,7 @@ const AddReservation = () => {
           >
             Reserve
           </button>
-          {error.length > 0 && <p className="red shadow-5 f4 pa1 fw6 b ">{error}</p>}
+          {error.length > 0 && <p className="red shadow-5 f4 pa1 fw6 b">{error}</p>}
         </main>
         )
       }
