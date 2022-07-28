@@ -35,16 +35,17 @@ const AddItem = () => {
 
   return (
     user && (
-    <div>
-      <h1>Add New Item</h1>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <label htmlFor="name">
+    <div className="AddItemCard">
+      <h1 className="AddItemCard-title">Add New Flight</h1>
+      <form onSubmit={(e) => handleSubmit(e)} className="AddItemCardform-group">
+        <label htmlFor="name" className="labelName">
           Name:
-          <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
+          <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} className="AddItem-Input" />
         </label>
-        <label htmlFor="image">
+        <label htmlFor="image" className="labelImage">
           Image:
           <input
+            className="AddItem-Input"
             type="button"
             onClick={() => {
               const imageInput = document.querySelector('#add-image');
@@ -64,15 +65,15 @@ const AddItem = () => {
             }}
           />
         </label>
-        <label htmlFor="flightNumber">
+        <label htmlFor="flightNumber" className="labelFlight">
           Flight Number:
-          <input type="text" name="flightNumber" value={flightNumber} onChange={(e) => setFlightNumber(e.target.value)} />
+          <input type="text" name="flightNumber" value={flightNumber} onChange={(e) => setFlightNumber(e.target.value)} className="AddItem-Input" />
         </label>
-        <label htmlFor="price">
-          Price:
-          <input type="text" name="price" value={price} onChange={(e) => setPrice(e.target.value)} />
+        <label htmlFor="price" className="labelPrice">
+          Price: $
+          <input type="text" name="price" value={price} onChange={(e) => setPrice(e.target.value)} className="AddItem-Input" />
         </label>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" className="AddItemButton" />
       </form>
     </div>
     )
