@@ -39,9 +39,8 @@ export function Flight(props) {
         {flightNumber}
       </h3>
       <h3 className="margin">
-        Price:
+        Price: $
         {price}
-        $
       </h3>
     </div>
   );
