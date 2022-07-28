@@ -5,8 +5,13 @@ const REQUEST_USER = 'REQUEST_USER';
 const LOAD_USER = 'LOAD_USER';
 const FAILED_USER = 'FAILED_USER';
 const RESET_ERROR = 'RESET_ERROR';
-
+const SIGN_OUT = 'SIGN_OUT';
 export const resetError = () => ({ type: RESET_ERROR });
+
+export const signOut = () => {
+  localStorage.removeItem('token');
+  return { type: SIGN_OUT };
+};
 
 export const signup = (name) => (dispatch) => {
   dispatch({ type: REQUEST_USER, payload: true });
@@ -20,8 +25,10 @@ export const signup = (name) => (dispatch) => {
     .then((response) => response.json())
     .then((result) => {
       if (result.token) localStorage.setItem('token', result.token);
-      dispatch(get());
-      dispatch(fetchReservations(result.user.id));
+      if (result.user) {
+        dispatch(get());
+        dispatch(fetchReservations(result.user.id));
+      }
       return result.user ? dispatch({ type: LOAD_USER, payload: result.user })
         : dispatch({ type: FAILED_USER, payload: result.errors });
     });
@@ -39,8 +46,10 @@ export const login = (name) => (dispatch) => {
     .then((response) => response.json())
     .then((result) => {
       localStorage.setItem('token', result.token);
-      dispatch(get());
-      dispatch(fetchReservations(result.user.id));
+      if (result.user) {
+        dispatch(get());
+        dispatch(fetchReservations(result.user.id));
+      }
       return dispatch({ type: LOAD_USER, payload: result.user });
     })
     .catch(() => dispatch({ type: FAILED_USER, payload: 'You need to sign up first.' }));
@@ -85,6 +94,8 @@ const authReducer = (state = initialState, action = {}) => {
       return {
         ...state, error: '',
       };
+    case SIGN_OUT:
+      return initialState;
     default:
       return state;
   }
