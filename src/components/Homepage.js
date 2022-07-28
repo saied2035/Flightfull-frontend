@@ -31,11 +31,17 @@ export function Flight(props) {
   } = props;
 
   return (
-    <div className="itemsContainer">
+    <div className="itemsCard">
       <img className="itemImage" src={image} alt="itemImage" />
-      <h2>{name}</h2>
-      <h3>{flightNumber}</h3>
-      <h3>{price}</h3>
+      <h2 className="margin">{name}</h2>
+      <h3 className="margin">
+        Flight Number:
+        {flightNumber}
+      </h3>
+      <h3 className="margin">
+        Price: $
+        {price}
+      </h3>
     </div>
   );
 }
@@ -61,7 +67,7 @@ function Flights() {
         // partialVisible
         autoPlay
         // focusOnSelect
-        centerMode
+        // centerMode
         swipeable
         draggable={false}
         showDots={false}
@@ -75,7 +81,7 @@ function Flights() {
         containerClass="carousel-container"
         removeArrowOnDeviceType={['tablet', 'mobile']}
         dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px"
+        itemClass="carousel-item-padding-80-px"
         customRightArrow={<CustomPrevArrow />}
         customLeftArrow={<CustomNextArrow />}
       >
