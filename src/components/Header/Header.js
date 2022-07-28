@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
 const Header = () => (
-  <nav className="flex-ns dn">
+  <nav className="flex-ns dn-m dn">
     <div className="logo">LOGO</div>
     <ul className="NavLinksList">
       <li className="NavLink">

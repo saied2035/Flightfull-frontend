@@ -20,7 +20,7 @@
 }
 
 ::-webkit-datetime-edit-fields-wrapper {
-  padding-left: 0.5rem;
+  padding-left: 0.7rem;
 }
 
 .custom-select select {
@@ -32,6 +32,15 @@
 }
 
 .custom-select select option {
+  
   background: none;
   background-color: rgba(150, 191, 1, 0.85);
+}
+.add-reservation-container {
+	height: 95vh;
+}
+@media only screen and (max-width: 960px) {
+  .add-reservation-container {
+  	height: 100vh;
+  }
 }

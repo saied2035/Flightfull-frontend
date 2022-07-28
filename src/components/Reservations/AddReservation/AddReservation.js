@@ -24,24 +24,26 @@ const AddReservation = () => {
       {
         user && (
         <main
-          className="add-reservation flex relative flex-column items-center justify-center mt3 mr3 mb0 ml0"
-          style={{ zIndex: 5, height: '95vh', gap: '1rem' }}
+          className="add-reservation-container relative-ns absolute-m absolute w-auto-ns w-100-m w-100 add-reservation
+          flex relative flex-column items-center justify-center
+          mt3-ns mt0-m mt0 mr3-ns mr0-m mr0 mb0 ml0-ns ml0-m ml0"
+          style={{ zIndex: 5, gap: '1rem' }}
         >
           <h1 className="ma0 white">Book your flight</h1>
           <hr className="white w5 m0" />
-          <p className="w-50 center tc f4 fw6 white">
-            There are lot pf flights you can reserve to more than 4000 cities around the world.
-            pick your seat now!
+          <p className="tc f4-ns f5-m f5 white lh-copy ma0">
+            <span className="db">You can reserve to more than 4000 cities around the world.</span>
+            <span className="db">There are lot of flights. Pick your seat now!</span>
           </p>
           <div style={{ zIndex: -1 }} className="background absolute w-100 h-100" />
-          <div className="custom-select w-20">
+          <div className="custom-select w-20-ns w-50-m w-50">
 
             <select
-              className="w-100 br3 ba b--white pa2 pl0 pr0"
+              className="w-100 br3 ba b--white pa2"
               name="flight"
               onChange={(e) => setCity(e.target.value)}
             >
-              <option value="" hidden> -- select a city -- </option>
+              <option value="" hidden>Select a city</option>
               {cities.map((city) => (
                 <option key={city.id} value={city.name}>
                   {city.name}
@@ -50,20 +52,20 @@ const AddReservation = () => {
             </select>
           </div>
           <input
-            className="white w-20 br3 ba b--white pa2 pl0 pr0 bg-transparent"
+            className="white w-20-ns w-50-m w-50 br3 ba b--white pa2 pl0 pr0 bg-transparent"
             type="date"
             name="date"
             onChange={(e) => setDate(e.target.value)}
           />
-          <div className="custom-select w-20">
+          <div className="custom-select w-20-ns w-50-m w-50">
             {
       flights && !itemId && (
         <select
-          className="w-100 br3 ba b--white pa2 pl0 pr0"
+          className="w-100 br3 ba b--white pa2"
           name="flight"
           onChange={(e) => setFlightId(e.target.value)}
         >
-          <option value="" hidden> -- select a flight -- </option>
+          <option value="" hidden>Select a flight</option>
           {flights.map((flight) => (
             <option key={flight.id} value={flight.id}>
               {flight.name}
