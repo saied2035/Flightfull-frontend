@@ -93,56 +93,54 @@ form.AddItemCardform-group {
   justify-content: center;
 }
 
-.labelName, .labelPrice, .labelImage, .labelFlight {
+.labelName,
+.labelPrice,
+.labelImage,
+.labelFlight {
   font-size: 1.2rem;
   margin-bottom: 1rem;
   padding: 12px 12px 12px 0;
- display: inline-block;
+  display: inline-block;
 }
 
 .AddItem-Input {
   width: 100%;
-  margin: 5px 0px;
+  margin: 5px 0;
   padding: 10px;
-  border: 0px;
+  border: 0;
   border-bottom: 1px solid #ccc;
   border-radius: 10px;
 }
 
-
 .AddItemButton {
-background-color: #97bf0f ;
-color: white;
-padding: 12px 20px;
-border: none;
-border-radius: 4px;
-cursor: pointer;
-float: right; 
-border-radius: 10px;
+  background-color: #97bf0f;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  float: right;
+  border-radius: 10px;
 }
 
 .AddItemButton:hover {
-background-color: #000;
-
+  background-color: #000;
 }
 
 /* end of the item page styles */
 
 /* start of the delete page styles */
-.flightInfo{
+.flightInfo {
   width: 90%;
   display: flex;
   flex-direction: column;
- 
 }
 
 .flightCard {
   display: flex;
-    margin-bottom: 3rem;
-    border: 1px solid #ccc;
-    padding: 1rem
+  margin-bottom: 3rem;
+  border: 1px solid #ccc;
+  padding: 1rem;
 }
-
 
 .flightImage {
   width: 100%;
@@ -150,7 +148,7 @@ background-color: #000;
   object-fit: cover;
 }
 
-.flightDetails{
+.flightDetails {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -160,10 +158,11 @@ background-color: #000;
 }
 
 .DeleteItemText {
- text-align: center;
- font-size: 2rem;
- margin-bottom: 1rem;
- text-transform: uppercase;
- text-decoration: underline;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  text-decoration: underline;
 }
+
 /* end of the delete page styles */
