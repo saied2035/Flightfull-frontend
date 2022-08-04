@@ -18,7 +18,7 @@ const Signup = () => {
         id="signup"
       >
         <div style={{ zIndex: -1 }} className="signup-background absolute w-100 h-100" />
-        <h1 className="white ttu tracked" style={{ marginTop: '10rem' }}>Welcome to Flightfull!</h1>
+        <h1 className="white ttu-ns tracked-ns tc" style={{ marginTop: '10rem' }}>Welcome to Flightfull!</h1>
         <input
           className="signup-input white w-20-ns w-50-m w-50 br3 ba b--white pa2 pl0 pr0 bg-transparent"
           placeholder="Username"

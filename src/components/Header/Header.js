@@ -17,52 +17,49 @@ const Header = () => {
         onClick={() => setMenu(!menu)}
       />
       <nav
-        className="flex-ns flex-column justify-between align-center dn-m dn"
-        style={{ padding: '12% 0%', borderRight: 'solid rgb(175, 175, 175) 1px' }}
+        className="flex-ns flex-column items-center justify-start dn-m dn vh-100"
+        style={{ gap: '2rem', borderRight: 'solid rgb(175, 175, 175) 1px' }}
       >
-        <img alt="logo" src={logo} className="w-40" />
-        <ul className="NavLinksList">
-          <li className="NavLink">
+        <img alt="logo" src={logo} className="w-50" />
+        <ul className="list tc flex flex-column">
+          <li className="">
             <NavLink to="/">
               Home
             </NavLink>
           </li>
-          <li className="NavLink">
+          <li className="">
             <NavLink to="/reservations/add">
               Reserve
             </NavLink>
           </li>
-          <li className="NavLink">
+          <li className="">
             <NavLink to="/reservations">
               My reservations
             </NavLink>
           </li>
-          <li className="NavLink">
+          <li className="">
             <NavLink to="/AddItem">
               Add Flight
             </NavLink>
           </li>
-          <li className="NavLink">
+          <li className="">
             <NavLink to="/DeleteItem">
               Delete Flight
             </NavLink>
           </li>
-          <li className="NavLink">
+          <li className="">
             <NavLink to="/login" onClick={() => dispatch(signOut())}>
               Sign out
             </NavLink>
           </li>
-        </ul>
-        <div className="NavFooter">
-          <div className="SocialMediaBox">
+          <li className="tc flex justify-center mt2" style={{ gap: '4px' }}>
             <img alt="twitter" src="https://img.icons8.com/small/24/000000/twitter.png" />
             <img alt="facebook" src="https://img.icons8.com/small/24/000000/facebook.png" />
             <img alt="google+" src="https://img.icons8.com/small/24/000000/google-plus.png" />
             <img alt="linkedin" src="https://img.icons8.com/small/24/000000/linkedin.png" />
             <img alt="pinterset" src="https://img.icons8.com/material-outlined/24/000000/pinterest--v1.png" />
-          </div>
-          <p>copy right</p>
-        </div>
+          </li>
+        </ul>
       </nav>
 
       <nav

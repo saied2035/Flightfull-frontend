@@ -26,7 +26,7 @@ const App = () => {
   }, []);
 
   return (
-    <main className="MainSkleton">
+    <main className="flex">
       {localStorage.token && <Header />}
       <Routes>
         <Route path="/signup" element={<Signup />} />

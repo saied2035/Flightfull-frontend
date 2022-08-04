@@ -19,7 +19,7 @@ const Login = () => {
         id="login"
       >
         <div style={{ zIndex: -1 }} className="login-background absolute w-100 h-100" />
-        <h1 className="white ttu tracked" style={{ marginTop: '10rem' }}>Login to your Flightfull account</h1>
+        <h1 className="white ttu-ns tracked-ns tc" style={{ marginTop: '10rem' }}>Login to your Flightfull account</h1>
         <input
           className="login-input white w-20-ns w-50-m w-50 br3 ba b--white pa2 pl0 pr0 bg-transparent"
           placeholder="Username"
