@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signOut } from '../../redux/auth/auth';
+import DesktopNav from './DesktopNav/DesktopNav';
 import logo from './logo.png';
 
 const Header = () => {
@@ -16,46 +17,7 @@ const Header = () => {
         style={{ zIndex: 50 }}
         onClick={() => setMenu(!menu)}
       />
-      <nav
-        className="flex-ns flex-column items-start justify-start dn-m dn vh-100"
-        style={{ gap: '1rem', borderRight: 'solid rgb(175, 175, 175) 1px', paddingLeft: '8px' }}
-      >
-        <img alt="logo" src={logo} className="w-50 ml4" />
-        <ul className="w-100 tl list flex flex-column">
-          <NavLink className="NavLink" to="/">
-            Home
-          </NavLink>
-          <NavLink className="NavLink" to="/add_reservation">
-            Reserve
-          </NavLink>
-          <NavLink className="NavLink" to="/reservations">
-            Reservations
-          </NavLink>
-          <NavLink className="NavLink" to="/AddItem">
-            Add Flight
-          </NavLink>
-          <NavLink className="NavLink" to="/DeleteItem">
-            Delete Flight
-          </NavLink>
-          <NavLink className="NavLink" to="/login" onClick={() => dispatch(signOut())}>
-            Sign out
-          </NavLink>
-          <li className="absolute tc self-center flex justify-center mt2" style={{ gap: '1rem', bottom: '1rem' }}>
-            <a href="https://twitter.com/SaiedGaffer" target="_blank" rel="noreferrer">
-              <img alt="Twitter" src="https://img.icons8.com/small/24/000000/twitter.png" />
-            </a>
-            <a href="https://www.linkedin.com/in/saiedgaffer" target="_blank" rel="noreferrer">
-              <img alt="Linkedin" src="https://img.icons8.com/small/24/000000/linkedin.png" />
-            </a>
-            <a href="https://github.com/saied2035" target="_blank" rel="noreferrer">
-              <img alt="Github" src="https://img.icons8.com/small/24/000000/github.png" />
-            </a>
-            <a href="https://angel.co/u/saiedgaffer" target="_blank" rel="noreferrer">
-              <img alt="AngelList" src="https://img.icons8.com/24/angelist.png" />
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <DesktopNav />
 
       <nav
         className={`${menu ? 'flex flex-column items-start vh-100 fixed w-100' : 'dn'}`}
