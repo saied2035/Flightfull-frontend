@@ -31,13 +31,8 @@
   padding: 0;
 }
 
-.NavLink,
-.logo {
-  width: 20vw;
-  margin: 1% 0;
-  height: 60px;
-  text-align: center;
-  padding: 20px 0;
+.NavLink {
+  padding: 0.5rem;
 }
 
 a {
@@ -45,7 +40,7 @@ a {
   color: inherit;
 }
 
-.NavLink:hover {
+.NavLink:hover, .active {
   background-color: #97bf0f;
   color: white;
 }
