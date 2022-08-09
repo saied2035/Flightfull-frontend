@@ -58,32 +58,29 @@ function Flights() {
 
   return (
     flights.length > 0 && (
-    <section className="MainPage">
-      <div className="MainTitle">
+    <section className="w-90">
+      <div className="flex flex-column justify-center items-center">
         <h1>Recommended Flights</h1>
         <p>please select a flight</p>
       </div>
       <Carousel
         // partialVisible
-        autoPlay
+        // autoPlay
         // focusOnSelect
         // centerMode
-        swipeable
+        // swipeable
         draggable={false}
         showDots={false}
         responsive={responsive}
         ssr // means to render carousel on server-side.
-        infinite
+        // infinite
         autoPlaySpeed={2000}
-        keyBoardControl
-        customTransition="all .5"
-        transitionDuration={500}
         containerClass="carousel-container"
-        removeArrowOnDeviceType={['tablet', 'mobile']}
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-80-px"
-        customRightArrow={<CustomPrevArrow />}
-        customLeftArrow={<CustomNextArrow />}
+        renderArrowsWhenDisabled
+        customRightArrow={<CustomNextArrow />}
+        customLeftArrow={<CustomPrevArrow />}
       >
         {
           flights.map((item) => (
