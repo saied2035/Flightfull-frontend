@@ -14,12 +14,15 @@ const DeleteItem = () => {
 
   return (
     userFlights && (
-    <div>
+    <div
+      className="flex flex-column items-center w-90-ns w-100-m w-100"
+      style={{ maxHeight: '100vh', overflow: 'auto' }}
+    >
       <h1 className="DeleteItemText">Delete Item</h1>
       <ul className="flightInfo">
         {userFlights.map((flight) => (
           <li key={flight.id} className="flightCard">
-            <div className="flightPic">
+            <div className="flightPic w-50">
               <img alt="flight-pic" src={flight.image} className="flightImage" />
             </div>
             <div className="flightDetails">

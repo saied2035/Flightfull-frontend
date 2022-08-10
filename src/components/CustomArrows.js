@@ -19,6 +19,7 @@ export function CustomPrevArrow(props) {
         position: 'absolute',
         left: '0px',
         zIndex: 50,
+        cursor: 'pointer',
       }}
       onClick={onClick}
       onKeyPress={onKeyPressHandler}
@@ -47,6 +48,7 @@ export function CustomNextArrow(props) {
         position: 'absolute',
         right: '0px',
         zIndex: 50,
+        cursor: 'pointer',
       }}
       onClick={onClick}
       onKeyPress={onKeyPressHandler}

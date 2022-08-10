@@ -35,7 +35,7 @@ const AddItem = () => {
 
   return (
     user && (
-    <div className="AddItemCard">
+    <div className="AddItemCard w-90-ns w-100-m w-100">
       <h1 className="AddItemCard-title">Add New Flight</h1>
       <form onSubmit={(e) => handleSubmit(e)} className="AddItemCardform-group">
         <label htmlFor="name" className="labelName">

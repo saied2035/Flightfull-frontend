@@ -9,14 +9,25 @@ const DetailsPage = () => {
   return (
     item && (
     <div className="detailMain">
-      <div>
-        <img className="detailPic" alt="flight-pic" src={item.image} />
+      <div className="detailPic">
+        <img alt="flight-pic" src={item.image} />
         <Link to="/">
           <button
             type="button"
-            className="CustomPrevArrow"
+            style={{
+              background: '#97BF0F',
+              borderRadius: '0 50px 50px 0',
+              display: 'flex',
+              justifyContent: 'right',
+              alignItems: 'center',
+              padding: '15px 10px 15px 15px',
+              left: '0px',
+              zIndex: 50,
+              border: 'none',
+              position: 'absolute',
+            }}
           >
-            <img alt="prev" src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/36/ffffff/external-Chevron-arrows-tanah-basah-glyph-tanah-basah-4.png" />
+            <img alt="prev" className="w-50" src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/36/ffffff/external-Chevron-arrows-tanah-basah-glyph-tanah-basah-4.png" />
           </button>
         </Link>
       </div>
@@ -39,7 +50,7 @@ const DetailsPage = () => {
             {item.price}
           </li>
         </ul>
-        <Link to="/reservations/add" state={{ item_id: `${id}` }}>
+        <Link to="/add_reservation" state={{ item_id: `${id}` }}>
           <button
             type="button"
             className="reserve-btn"
@@ -47,9 +58,6 @@ const DetailsPage = () => {
             Reserve
           </button>
         </Link>
-        {/* <NavLink to="/reservations/add" state={{ item_id: `${id}` }}>
-          Reserve
-        </NavLink> */}
       </div>
     </div>
     )

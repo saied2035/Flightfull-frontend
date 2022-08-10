@@ -8,18 +8,21 @@ const ReservationList = () => {
   const error = useSelector((state) => (state.reservationsReducer.error
     ? state.reservationsReducer.error : ''));
   return (
-    <div className="static-ns absolute-m absolute">
-      <h1 className="tc" style={{ marginRight: '2rem' }}>reservations</h1>
-      <section className="flex flex-column center" id="reservations">
-        <div className="flex items-center center w-100">
-          <p style={{ flex: 1 }} className="pa1 bg-black white flex justify-center">Image</p>
-          <p style={{ flex: 1 }} className="pa1 bg-black white flex justify-center">Details</p>
-          <p style={{ flex: 1 }} className="pa1 bg-black white flex justify-center">Date</p>
-          <p style={{ flex: 1 }} className="pa1 bg-black white flex justify-center">Action</p>
-        </div>
-        {pending && <p>Loading...</p>}
-        {reservations && reservations.length === 0 && <p>You don&apos;t have any reservations!</p>}
-        {
+    <>
+      {reservations && reservations.length === 0 && <p className="w-100 f4 tc mt5">You don&apos;t have any reservations!</p>}
+      <div className={`static-ns absolute-m absolute w-90-ns w-100-m w-100 
+      ${reservations && reservations.length === 0 ? 'dn' : ''}`}
+      >
+        <h1 className="tc" style={{ marginRight: '2rem' }}>reservations</h1>
+        <section className="flex flex-column center" id="reservations">
+          <div className="flex items-center center w-100">
+            <p style={{ flex: 1 }} className="pa1 bg-black white flex justify-center">Image</p>
+            <p style={{ flex: 1 }} className="pa1 bg-black white flex justify-center">Details</p>
+            <p style={{ flex: 1 }} className="pa1 bg-black white flex justify-center">Date</p>
+            <p style={{ flex: 1 }} className="pa1 bg-black white flex justify-center">Action</p>
+          </div>
+          {pending && <p>Loading...</p>}
+          {
            reservations
            && reservations.map((reservation) => {
              const {
@@ -39,9 +42,10 @@ const ReservationList = () => {
              );
            })
         }
-        {error.Error && <p>{error}</p>}
-      </section>
-    </div>
+          {error.Error && <p>{error}</p>}
+        </section>
+      </div>
+    </>
   );
 };
 export default ReservationList;

@@ -24,9 +24,9 @@ const AddReservation = () => {
       {
         user && (
         <main
-          className="add-reservation-container relative-ns absolute-m absolute w-auto-ns w-100-m w-100 add-reservation
+          className="add-reservation-container relative-ns absolute-m absolute w-90-ns w-100-m w-100 add-reservation
           flex relative flex-column items-center justify-center
-          mt3-ns mt0-m mt0 mr3-ns mr0-m mr0 mb0 ml0-ns ml0-m ml0"
+          mt3-ns mt0-m mt0 mr3-ns mr0-m mr0 mb0 ml3-ns ml0-m ml0"
           style={{ zIndex: 5, gap: '1rem' }}
         >
           <h1 className="ma0 white">Book your flight</h1>

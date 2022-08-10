@@ -7,6 +7,9 @@
   font-family: 'Poppins', sans-serif;
 }
 
+a, button, input[type=submit] {
+  cursor: pointer;
+}
 .MainSkleton {
   display: grid;
   grid-template-columns: 2fr 8fr;
@@ -201,11 +204,10 @@ form.AddItemCardform-group {
 
 /* end of the delete page styles */
 .detailMain {
-  display: grid;
-  grid-template-columns: 6fr 4fr;
-  column-gap: 2rem;
+  display: flex;
   align-items: center;
-  padding-right: 10%;
+  width: 90%;
+  position: relative;
 }
 
 .picSection {
@@ -218,6 +220,7 @@ form.AddItemCardform-group {
   max-width: 500px;
   max-height: 500px;
   object-fit: contain;
+  margin: 0 auto;
 }
 
 .CustomPrevArrow {
@@ -251,6 +254,13 @@ form.AddItemCardform-group {
   background: #e2e3e5;
 }
 
+.cardDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 5%;
+}
 .reserve-btn {
   width: 140px;
   height: 45px;
@@ -261,8 +271,6 @@ form.AddItemCardform-group {
   outline: none;
   border-radius: 45px;
   margin-top: 2rem;
-  position: absolute;
-  right: 7%;
 }
 
 @media screen and (max-width: 640px) {
