@@ -14,13 +14,19 @@ const AddItem = () => {
   const [flightNumber, setFlightNumber] = useState('');
   const [price, setPrice] = useState('');
 
-  const imageToSrc = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = async () => {
-      const result = await reader.result;
-      setImageSrc(result);
-    };
+  const imageToSrc = async (file) => {
+    const formData = new FormData();
+    formData.append('image_file', file);
+    const response = await fetch('https://sdk.photoroom.com/v1/segment', {
+      method: 'POST',
+      headers: {
+        'x-api-key': '102279905dd5fd330cfa4d33c0ee13646946d683',
+      },
+      body: formData,
+    });
+    const outputBlob = await response.blob();
+    const outputImage = URL.createObjectURL(outputBlob);
+    setImageSrc(outputImage);
   };
   const handleSubmit = (e) => {
     e.preventDefault();

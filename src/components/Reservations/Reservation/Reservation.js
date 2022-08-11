@@ -8,29 +8,34 @@ const Reservation = ({
   const userId = useSelector((state) => state.authReducer.user.id);
   const dispatch = useDispatch();
   return (
-    <div className="reservation flex items-center center w-100">
-      <img alt="flight-pic" className="w-25 br3 flex items-center" src={image} style={{ height: '30vh' }} />
-      <p className="white flex flex-column flex items-center" style={{ gap: '0.5rem' }}>
-        <span className="db">
-          Flight name:
-          {` ${name}`}
-        </span>
-        <span className="db">
-          Price:
-          {` ${price}$`}
-        </span>
-        <span className="db">
-          City:
-          {` ${city}`}
-        </span>
-      </p>
-      <p className=" white flex justify-center">
-        {date}
-      </p>
-      <div className="flex justify-center">
+    <div className="flex flex-column justify-center items-center w-20">
+      <img alt="flight-pic" className="w-100" src={image} />
+      <div
+        className="flex flex-column items-center absolute"
+        style={{ gap: '0.5rem', top: '35%', background: '#e4e5e9' }}
+      >
+        <p className="flex flex-column items-center" style={{ gap: '0.5rem' }}>
+          <span className="db">
+            Flight name:
+            {` ${name}`}
+          </span>
+          <span className="db">
+            Price:
+            {` ${price}$`}
+          </span>
+          <span className="db">
+            City:
+            {` ${city}`}
+          </span>
+        </p>
+        <p className="flex justify-center">
+          Date:
+          {' '}
+          {date}
+        </p>
         <button
           type="button"
-          className="pointer w4 white b--none br3 pa2"
+          className="pointer w4 b--none br3 pa2 center"
           style={{ background: 'transparent', border: '1px solid #8fb601' }}
           onClick={() => dispatch(deleteReservation({ id, user_id: userId }))}
         >
