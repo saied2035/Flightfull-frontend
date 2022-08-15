@@ -18,7 +18,6 @@ export function CustomPrevArrow(props) {
         padding: '15px 10px 15px 15px',
         position: 'absolute',
         left: '0px',
-        zIndex: 50,
         cursor: 'pointer',
       }}
       onClick={onClick}
@@ -47,7 +46,6 @@ export function CustomNextArrow(props) {
         padding: '15px 10px 15px 15px',
         position: 'absolute',
         right: '0px',
-        zIndex: 50,
         cursor: 'pointer',
       }}
       onClick={onClick}

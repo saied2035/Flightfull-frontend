@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Proptypes from 'prop-types';
+import loading from '../loading.gif';
 import { CustomNextArrow, CustomPrevArrow } from './CustomArrows';
 
 const responsive = {
@@ -55,34 +56,39 @@ Flight.propTypes = {
 
 function Flights() {
   const flights = useSelector((state) => state.flightsReducer.flights);
-
+  const pending = useSelector((state) => state.authReducer.pending);
   return (
-    flights.length > 0 && (
-    <section className="w-90">
-      <div className="flex flex-column justify-center items-center">
-        <h1>Recommended Flights</h1>
-        <p>please select a flight</p>
+    pending ? (
+      <div className="w-90 flex justify-center items-center" style={{ height: '100vh' }}>
+        <img alt="loading" src={loading} />
       </div>
-      <Carousel
+    )
+      : flights.length > 0 && (
+      <section className="w-90">
+        <div className="flex flex-column justify-center items-center">
+          <h1>Recommended Flights</h1>
+          <p>please select a flight</p>
+        </div>
+        <Carousel
         // partialVisible
         // autoPlay
         // focusOnSelect
         // centerMode
         // swipeable
-        draggable={false}
-        showDots={false}
-        responsive={responsive}
-        ssr // means to render carousel on server-side.
+          draggable={false}
+          showDots={false}
+          responsive={responsive}
+          ssr // means to render carousel on server-side.
         // infinite
-        autoPlaySpeed={2000}
-        containerClass="carousel-container"
-        dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-80-px"
-        renderArrowsWhenDisabled
-        customRightArrow={<CustomNextArrow />}
-        customLeftArrow={<CustomPrevArrow />}
-      >
-        {
+          autoPlaySpeed={2000}
+          containerClass="carousel-container"
+          dotListClass="custom-dot-list-style"
+          itemClass="carousel-item-padding-80-px"
+          renderArrowsWhenDisabled
+          customRightArrow={<CustomNextArrow />}
+          customLeftArrow={<CustomPrevArrow />}
+        >
+          {
           flights.map((item) => (
             <NavLink to={`Item_detail/${item.id}`} state={{ item }} key={item.id}>
               <Flight
@@ -94,9 +100,9 @@ function Flights() {
             </NavLink>
           ))
         }
-      </Carousel>
-    </section>
-    )
+        </Carousel>
+      </section>
+      )
   );
 }
 

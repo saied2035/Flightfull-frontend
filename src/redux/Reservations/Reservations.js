@@ -14,7 +14,7 @@ export const resetReservation = () => ({
 });
 export const fetchReservations = (userId) => (dispatch) => {
   dispatch({ type: REQUEST_RESERVATIONS, payload: true });
-  return fetch(`http://127.0.0.1:3001/api/v1/users/${userId}/reservations`)
+  return fetch(`https://intense-savannah-72561.herokuapp.com/api/v1/users/${userId}/reservations`)
     .then((response) => response.json())
     .then((result) => (result.Error
       ? dispatch({ type: FAILED_RESERVATIONS, payload: result })
@@ -22,7 +22,7 @@ export const fetchReservations = (userId) => (dispatch) => {
 };
 
 export const createReservation = (data) => (dispatch) => (
-  fetch(`http://127.0.0.1:3001/api/v1/users/${data.user_id}/reservations`, {
+  fetch(`https://intense-savannah-72561.herokuapp.com/api/v1/users/${data.user_id}/reservations`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export const createReservation = (data) => (dispatch) => (
 );
 
 export const deleteReservation = (data) => (dispatch) => (
-  fetch(`http://127.0.0.1:3001/api/v1/users/${data.user_id}/reservations/${data.id}`, {
+  fetch(`https://intense-savannah-72561.herokuapp.com/api/v1/users/${data.user_id}/reservations/${data.id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',

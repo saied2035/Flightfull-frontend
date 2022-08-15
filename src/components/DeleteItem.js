@@ -22,7 +22,7 @@ const DeleteItem = () => {
       <ul className="flightInfo">
         {userFlights.map((flight) => (
           <li key={flight.id} className="flightCard">
-            <div className="flightPic w-50">
+            <div className="flightPic self-center">
               <img alt="flight-pic" src={flight.image} className="flightImage" />
             </div>
             <div className="flightDetails">

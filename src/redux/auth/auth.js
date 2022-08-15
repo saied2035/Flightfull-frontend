@@ -15,7 +15,7 @@ export const signOut = () => {
 
 export const signup = (name) => (dispatch) => {
   dispatch({ type: REQUEST_USER, payload: true });
-  fetch('http://localhost:3001/api/v1/users', {
+  fetch('https://intense-savannah-72561.herokuapp.com/api/v1/users', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export const signup = (name) => (dispatch) => {
 
 export const login = (name) => (dispatch) => {
   dispatch({ type: REQUEST_USER, payload: true });
-  fetch('http://localhost:3001/api/v1/login', {
+  fetch('https://intense-savannah-72561.herokuapp.com/api/v1/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ export const login = (name) => (dispatch) => {
 
 export const fetchUser = () => (dispatch) => {
   dispatch({ type: REQUEST_USER, payload: true });
-  fetch('http://localhost:3001/api/v1/auth', {
+  fetch('https://intense-savannah-72561.herokuapp.com/api/v1/auth', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -66,9 +66,13 @@ export const fetchUser = () => (dispatch) => {
   })
     .then((response) => response.json())
     .then((user) => {
-      dispatch({ type: LOAD_USER, payload: user });
-      dispatch(get());
-      dispatch(fetchReservations(user.id));
+      if (user.id) {
+        dispatch({ type: LOAD_USER, payload: user });
+        dispatch(get());
+        dispatch(fetchReservations(user.id));
+      } else {
+        dispatch({ type: FAILED_USER, payload: '' });
+      }
     })
     .catch(() => dispatch({ type: FAILED_USER, payload: '' }));
 };

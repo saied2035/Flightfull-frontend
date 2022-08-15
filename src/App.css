@@ -179,11 +179,6 @@ form.AddItemCardform-group {
   padding: 1rem;
 }
 
-.flightImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 
 .flightDetails {
   width: 100%;
