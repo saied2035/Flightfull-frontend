@@ -60,7 +60,25 @@
 .reservation:first-child {
   border-top: none;
 }
+.reservation-container {
+  cursor: pointer;
+}
 
+.reservation-container > .reservation-info {
+  gap: 0.5rem;
+  cursor: pointer; 
+  background: #e4e5e9;
+  overflow: hidden; 
+  max-height: 0;
+  transition: max-height 0.5s;
+}
+
+.reservation-container:hover > .reservation-info {
+  cursor: default;
+  padding: 0.5rem;
+  max-height: 500px;
+
+}
 @media only screen and (max-width: 960px) {
   .add-reservation-container {
     height: 100vh;

@@ -14,7 +14,7 @@ const ReservationList = () => {
       ${reservations && reservations.length === 0 ? 'dn' : ''}`}
       >
         <h1 className="tc" style={{ marginRight: '2rem' }}>reservations</h1>
-        <section className="flex justify-center">
+        <section className="flex flex-row-ns flex-wrap flex-column justify-center items-center">
           {pending && <p>Loading...</p>}
           {
            reservations

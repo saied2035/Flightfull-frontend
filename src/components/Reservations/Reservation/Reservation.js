@@ -8,12 +8,9 @@ const Reservation = ({
   const userId = useSelector((state) => state.authReducer.user.id);
   const dispatch = useDispatch();
   return (
-    <div className="flex flex-column justify-center items-center w-20">
+    <div className="reservation-container relative flex flex-column justify-center items-center w-20">
       <img alt="flight-pic" className="w-100" src={image} />
-      <div
-        className="flex flex-column items-center absolute"
-        style={{ gap: '0.5rem', top: '35%', background: '#e4e5e9' }}
-      >
+      <div className="flex flex-column items-center reservation-info">
         <p className="flex flex-column items-center" style={{ gap: '0.5rem' }}>
           <span className="db">
             Flight name:
@@ -35,8 +32,8 @@ const Reservation = ({
         </p>
         <button
           type="button"
-          className="pointer w4 b--none br3 pa2 center"
-          style={{ background: 'transparent', border: '1px solid #8fb601' }}
+          className="pointer pa1 pl2 pr2 mb1 white b--none br3 center"
+          style={{ background: '#8fb601' }}
           onClick={() => dispatch(deleteReservation({ id, user_id: userId }))}
         >
           Cancel Reservation

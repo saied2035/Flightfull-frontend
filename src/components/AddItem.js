@@ -25,8 +25,12 @@ const AddItem = () => {
       body: formData,
     });
     const outputBlob = await response.blob();
-    const outputImage = URL.createObjectURL(outputBlob);
-    setImageSrc(outputImage);
+    const reader = new FileReader();
+    reader.readAsDataURL(outputBlob);
+    reader.onloadend = () => {
+      const { result } = reader;
+      setImageSrc(result);
+    };
   };
   const handleSubmit = (e) => {
     e.preventDefault();
