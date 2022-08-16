@@ -7,9 +7,12 @@
   font-family: 'Poppins', sans-serif;
 }
 
-a, button, input[type=submit] {
+a,
+button,
+input[type=submit] {
   cursor: pointer;
 }
+
 .MainSkleton {
   display: grid;
   grid-template-columns: 2fr 8fr;
@@ -43,7 +46,8 @@ a {
   color: inherit;
 }
 
-.NavLink:hover, .active {
+.NavLink:hover,
+.active {
   background-color: #97bf0f;
   color: white;
 }
@@ -179,7 +183,6 @@ form.AddItemCardform-group {
   padding: 1rem;
 }
 
-
 .flightDetails {
   width: 100%;
   display: flex;
@@ -256,6 +259,7 @@ form.AddItemCardform-group {
   margin-left: auto;
   margin-right: 5%;
 }
+
 .reserve-btn {
   width: 140px;
   height: 45px;
