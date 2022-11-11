@@ -15,7 +15,7 @@ export const signOut = () => {
 
 export const signup = (name) => (dispatch) => {
   dispatch({ type: REQUEST_USER, payload: true });
-  fetch('https://intense-savannah-72561.herokuapp.com/api/v1/users', {
+  fetch('https://flightfull-production.up.railway.app/api/v1/users', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -29,14 +29,18 @@ export const signup = (name) => (dispatch) => {
         dispatch(get());
         dispatch(fetchReservations(result.user.id));
       }
-      return result.user ? dispatch({ type: LOAD_USER, payload: result.user })
+      return result.user ? dispatch({
+        type: LOAD_USER,
+        payload: result.user,
+        bgRemover: result.bgRemover,
+      })
         : dispatch({ type: FAILED_USER, payload: result.errors });
     });
 };
 
 export const login = (name) => (dispatch) => {
   dispatch({ type: REQUEST_USER, payload: true });
-  fetch('https://intense-savannah-72561.herokuapp.com/api/v1/login', {
+  fetch('https://flightfull-production.up.railway.app/api/v1/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -45,19 +49,20 @@ export const login = (name) => (dispatch) => {
   })
     .then((response) => response.json())
     .then((result) => {
+      if (result.status === 500) return dispatch({ type: FAILED_USER, payload: 'You need to sign up first.' });
       localStorage.setItem('token', result.token);
       if (result.user) {
         dispatch(get());
         dispatch(fetchReservations(result.user.id));
       }
-      return dispatch({ type: LOAD_USER, payload: result.user });
+      return dispatch({ type: LOAD_USER, payload: result.user, bgRemover: result.bgRemover });
     })
     .catch(() => dispatch({ type: FAILED_USER, payload: 'You need to sign up first.' }));
 };
 
 export const fetchUser = () => (dispatch) => {
   dispatch({ type: REQUEST_USER, payload: true });
-  fetch('https://intense-savannah-72561.herokuapp.com/api/v1/auth', {
+  fetch('https://flightfull-production.up.railway.app/api/v1/auth', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -65,11 +70,11 @@ export const fetchUser = () => (dispatch) => {
     },
   })
     .then((response) => response.json())
-    .then((user) => {
-      if (user.id) {
-        dispatch({ type: LOAD_USER, payload: user });
+    .then((data) => {
+      if (data.user.id) {
+        dispatch({ type: LOAD_USER, payload: data.user, bgRemover: data.bgRemover });
         dispatch(get());
-        dispatch(fetchReservations(user.id));
+        dispatch(fetchReservations(data.user.id));
       } else {
         dispatch({ type: FAILED_USER, payload: '' });
       }
@@ -81,6 +86,7 @@ const initialState = {
   user: null,
   pending: false,
   error: null,
+  bgRemover: null,
 };
 const authReducer = (state = initialState, action = {}) => {
   switch (action.type) {
@@ -88,7 +94,7 @@ const authReducer = (state = initialState, action = {}) => {
       return { ...state, pending: action.payload };
     case LOAD_USER:
       return {
-        ...state, user: action.payload, pending: false,
+        ...state, user: action.payload, pending: false, bgRemover: action.bgRemover,
       };
     case FAILED_USER:
       return {

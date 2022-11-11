@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const itemsURL = 'https://intense-savannah-72561.herokuapp.com/api/v1/items';
-const deleteItemUrl = 'https://intense-savannah-72561.herokuapp.com/api/v1/users';
+const itemsURL = 'https://flightfull-production.up.railway.app/api/v1/items';
+const deleteItemUrl = 'https://flightfull-production.up.railway.app/api/v1/users';
 
 const GET = 'get';
 const POST = 'post';

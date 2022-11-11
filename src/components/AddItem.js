@@ -5,9 +5,9 @@ import { post } from '../redux/flights/flights';
 
 const AddItem = () => {
   const user = useSelector((state) => state.authReducer.user);
+  const bgRemover = useSelector((state) => state.authReducer.bgRemover);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
   const [imageSrc, setImageSrc] = useState('');
@@ -16,11 +16,12 @@ const AddItem = () => {
 
   const imageToSrc = async (file) => {
     const formData = new FormData();
+    formData.append('size', 'auto');
     formData.append('image_file', file);
-    const response = await fetch('https://sdk.photoroom.com/v1/segment', {
+    const response = await fetch('https://api.remove.bg/v1.0/removebg', {
       method: 'POST',
       headers: {
-        'x-api-key': '102279905dd5fd330cfa4d33c0ee13646946d683',
+        'x-api-key': bgRemover,
       },
       body: formData,
     });
