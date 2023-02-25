@@ -1,9 +1,9 @@
 import './App.css';
 import {
-  Routes, Route, useNavigate, useLocation,
+  Routes, Route, useNavigate,
 } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from './components/Header/Header';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
@@ -18,19 +18,21 @@ import { fetchUser } from './redux/auth/auth';
 const App = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { pathname } = useLocation();
+  const user = useSelector((state) => state.authReducer.user);
   useEffect(() => {
-    dispatch(fetchUser());
-    if (!localStorage.token && pathname === '/login') navigate('/login');
-    else if (!localStorage.token) navigate('/signup');
+    dispatch(fetchUser(navigate));
   }, []);
 
   return (
     <main className="flex">
-      {localStorage.token && <Header />}
+      {user && <Header />}
       <Routes>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+      </Routes>
+      { user
+      && (
+      <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/reservations" element={<ReservationList />} />
         <Route path="/add_reservation" element={<AddReservation />} />
@@ -38,6 +40,7 @@ const App = () => {
         <Route path="/AddItem" element={<AddItem />} />
         <Route path="/DeleteItem" element={<DeleteItem />} />
       </Routes>
+      )}
     </main>
   );
 };

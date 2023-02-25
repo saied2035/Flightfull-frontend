@@ -15,7 +15,7 @@ export const signOut = () => {
 
 export const signup = (name) => (dispatch) => {
   dispatch({ type: REQUEST_USER, payload: true });
-  fetch('https://flightfull-production.up.railway.app/api/v1/users', {
+  fetch('https://flightfull-production-43d5.up.railway.app//api/v1/users', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ export const signup = (name) => (dispatch) => {
 
 export const login = (name) => (dispatch) => {
   dispatch({ type: REQUEST_USER, payload: true });
-  fetch('https://flightfull-production.up.railway.app/api/v1/login', {
+  fetch('https://flightfull-production-43d5.up.railway.app/api/v1/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -60,9 +60,9 @@ export const login = (name) => (dispatch) => {
     .catch(() => dispatch({ type: FAILED_USER, payload: 'You need to sign up first.' }));
 };
 
-export const fetchUser = () => (dispatch) => {
+export const fetchUser = (navigate) => (dispatch) => {
   dispatch({ type: REQUEST_USER, payload: true });
-  fetch('https://flightfull-production.up.railway.app/api/v1/auth', {
+  fetch('https://flightfull-production-43d5.up.railway.app/api/v1/auth', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -71,15 +71,16 @@ export const fetchUser = () => (dispatch) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.user.id) {
-        dispatch({ type: LOAD_USER, payload: data.user, bgRemover: data.bgRemover });
-        dispatch(get());
-        dispatch(fetchReservations(data.user.id));
-      } else {
-        dispatch({ type: FAILED_USER, payload: '' });
+      if (data.status === 500) {
+        console.log(data);
+        navigate('/login');
+        return dispatch({ type: FAILED_USER, payload: 'Please login again.' });
       }
+      dispatch({ type: LOAD_USER, payload: data.user, bgRemover: data.bgRemover });
+      dispatch(get());
+      return dispatch(fetchReservations(data.user.id));
     })
-    .catch(() => dispatch({ type: FAILED_USER, payload: '' }));
+    .catch(() => dispatch({ type: FAILED_USER, payload: 'Please login again.' }));
 };
 
 const initialState = {

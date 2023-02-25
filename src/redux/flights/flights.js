@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const itemsURL = 'https://flightfull-production.up.railway.app/api/v1/items';
-const deleteItemUrl = 'https://flightfull-production.up.railway.app/api/v1/users';
+const itemsURL = 'https://flightfull-production-43d5.up.railway.app/api/v1/items';
+const deleteItemUrl = 'https://flightfull-production-43d5.up.railway.app/api/v1/users';
 
 const GET = 'get';
 const POST = 'post';
